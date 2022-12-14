@@ -66,6 +66,9 @@ def clean_data(df):
 
     # drop duplicates
     df.drop_duplicates(inplace = True)
+    
+    # assuming 2 as 1
+    df["storm"].replace(2,1, inplace=True)
 
     return df
 
