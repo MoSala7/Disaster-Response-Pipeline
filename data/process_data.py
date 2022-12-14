@@ -57,8 +57,11 @@ def clean_data(df):
         # set each value to be the last character of the string
         categories[column] = categories[column].str[-1]
 
-        # convert column from string to binaries
-        categories[column] = categories[column].astype(np.int)
+        # convert column from string to numeric
+        categories[column] = categories[column].astype(int)
+
+    # Convert all value into binary (0 or 1)
+    categories = (categories > 0).astype(int)
 
     # drop the original categories column from `df`
     df.drop('categories', axis=1, inplace=True)
@@ -68,7 +71,7 @@ def clean_data(df):
 
     # drop duplicates
     df.drop_duplicates(inplace=True)
-    df = df[df['related'] != 2]
+
     return df
 
 
